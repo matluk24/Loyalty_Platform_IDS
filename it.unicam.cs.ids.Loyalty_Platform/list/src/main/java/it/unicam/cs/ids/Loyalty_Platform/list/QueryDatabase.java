@@ -6,13 +6,11 @@ public class QueryDatabase {
 	
 	public Connection conn() {
 		Connection connection=null;
-		String conUrl = "jdbc:mysql://localhost:3306;"+
-				"database=loyaltyplatform;"+
-				"user=root;"+
-				"password= ;";
+		String conUrl = "jdbc:mysql://localhost:3306/loyaltyplatform";
 		try{
-			connection =(Connection) DriverManager.getConnection(conUrl);
-		}catch(SQLException e) {
+			Class.forName("com.mysql.jdbc.Driver");  
+			connection =(Connection) DriverManager.getConnection(conUrl,"root","");
+		}catch(Exception e) {
 			e.printStackTrace();
 		}
 		return connection;	
@@ -28,7 +26,9 @@ public class QueryDatabase {
 			}
 			resultSet = pStmt.executeQuery();
 			while(resultSet.next()) {
-				System.out.println(resultSet.getString(1));
+				for(int i=1;i<=resultSet.getMetaData().getColumnCount();i++) {
+					System.out.print(resultSet.getString(resultSet.getMetaData().getColumnName(i))+" ");
+				}
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
