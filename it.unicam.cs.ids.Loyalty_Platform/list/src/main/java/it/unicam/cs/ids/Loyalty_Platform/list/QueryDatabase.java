@@ -4,29 +4,35 @@ import java.sql.*;
 
 public class QueryDatabase {
 	
+	Connection conn=null;
+	
 	public Connection conn() {
-		Connection connection=null;
 		String conUrl = "jdbc:mysql://localhost:3306/loyaltyplatform";
 		try{
 			Class.forName("com.mysql.jdbc.Driver");  
-			connection =(Connection) DriverManager.getConnection(conUrl,"root","");
+			conn =(Connection) DriverManager.getConnection(conUrl,"root","");
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
-		return connection;	
+		return conn;	
 	}
 	
 	public ResultSet query(String query, String[] arguments) {
-		Connection conn = this.conn();
+		int l;
+		if(arguments==null) {
+			l=0;
+		}
+		else {
+			l=arguments.length;
+		}
 		ResultSet resultSet=null;
 		try {
 			PreparedStatement pStmt= conn.prepareStatement(query);
-			for(int i = 0; i<arguments.length;i++ ) {
+			for(int i = 0; i<l;i++ ) {
 				pStmt.setString(i+1,arguments[i]);
 			}
 			resultSet = pStmt.executeQuery();
 			
-			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
@@ -34,7 +40,6 @@ public class QueryDatabase {
 		
 	}
 	public ResultSet insert(String insert, String[] attributes) {
-		Connection conn = this.conn();
 		ResultSet resultSet=null;
 
 		try {
@@ -44,11 +49,17 @@ public class QueryDatabase {
 			}
 			pStmt.execute();
 			resultSet = pStmt.getGeneratedKeys();
-			conn.close();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return resultSet;
+	}
+	
+	public void close() throws SQLException {
+		
+		conn.close();
+		
 	}
 	
 }

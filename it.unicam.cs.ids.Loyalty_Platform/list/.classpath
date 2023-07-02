@@ -11,7 +11,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/franc/git/Loyalty_Platform_IDS/it.unicam.cs.ids.Loyalty_Platform/buildSrc/build/libs/buildSrc.jar"/>
-	<classpathentry kind="lib" path="C:/Users/franc/Downloads/mysql-connector.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mattl/git/Loyalty_Platform_IDS/it.unicam.cs.ids.Loyalty_Platform/buildSrc/build/libs/buildSrc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/mattl/git/Loyalty_Platform_IDS/it.unicam.cs.ids.Loyalty_Platform/buildSrc/build/libs/mysql-connector.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
