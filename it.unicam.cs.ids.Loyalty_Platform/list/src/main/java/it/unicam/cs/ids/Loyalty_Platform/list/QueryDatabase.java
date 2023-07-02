@@ -16,7 +16,7 @@ public class QueryDatabase {
 		return connection;	
 	}
 	
-	public void query(String query, String[] arguments) {
+	public ResultSet query(String query, String[] arguments) {
 		Connection conn = this.conn();
 		ResultSet resultSet=null;
 		try {
@@ -25,16 +25,15 @@ public class QueryDatabase {
 				pStmt.setString(i+1,arguments[i]);
 			}
 			resultSet = pStmt.executeQuery();
-			while(resultSet.next()) {
-				for(int i=1;i<=resultSet.getMetaData().getColumnCount();i++) {
-					System.out.print(resultSet.getString(resultSet.getMetaData().getColumnName(i))+" ");
-				}
-			}
+			
+			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		return resultSet;
+		
 	}
-	public void insert(String insert, String[] attributes) {
+	public ResultSet insert(String insert, String[] attributes) {
 		Connection conn = this.conn();
 		ResultSet resultSet=null;
 
@@ -45,12 +44,11 @@ public class QueryDatabase {
 			}
 			pStmt.execute();
 			resultSet = pStmt.getGeneratedKeys();
-			while(resultSet.next()) {
-				System.out.println("Generate: "+resultSet.getString(1)); 
-			}
+			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
+		return resultSet;
 	}
 	
 }
