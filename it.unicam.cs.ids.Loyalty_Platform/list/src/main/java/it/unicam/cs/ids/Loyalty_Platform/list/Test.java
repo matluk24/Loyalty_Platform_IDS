@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 public class Test {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		// TODO Auto-generated method stub
 		
 		
@@ -16,14 +16,11 @@ public class Test {
 		
 		CatalogoPremi c= new CatalogoPremi();
 		
-		try {
-			c.getPremiDaDB();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		if(c.getPremiDaDB()) {
+		System.out.println("catalogo premi vuoto");	
+			}else {
 		c.stampaCatalogo();
-		
+			}
 		
 	}
 

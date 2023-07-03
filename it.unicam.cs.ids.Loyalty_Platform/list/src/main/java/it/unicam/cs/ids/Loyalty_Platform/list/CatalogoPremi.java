@@ -1,38 +1,36 @@
 package it.unicam.cs.ids.Loyalty_Platform.list;
 
-import java.util.LinkedList;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 
 public class CatalogoPremi {
 	
-	private QueryDatabase db= new QueryDatabase();
-	private LinkedList<Premi> catalogo= new LinkedList<Premi>();
-	private ResultSet s= null;
+	private ArrayDati catalogo=null;
 	
 	
-	public void getPremiDaDB() throws SQLException {
-		
-		
-		db.conn();
-		s=db.query("SELECT * FROM premi", null);
-		
-		while(s.next()) {
-			catalogo.add(new Premi(s.getInt(1), s.getString(2), s.getString(3), s.getInt(4)));
+	public boolean getPremiDaDB() throws SQLException {
+		QueryDatabase db= new QueryDatabase();
+		catalogo=db.query("SELECT * FROM premi", null);
+		boolean b=true;
+		if(catalogo==null) {
+			b= false;
 		}
+		return b;
 	}
 	
 	public void stampaCatalogo() {
 		
-		for(int i=0;i<catalogo.size();i++) {
-			System.out.println(catalogo.get(i).toString());
+		for(int i=0; i<catalogo.rowSize();i++) {
+		System.out.println(catalogo.getRow(i).toString());
 		}
 		
 	}
 	
 	public Premi getPremioByIndex(int i) {
 		
-		return catalogo.get(i);
+		return new Premi(Integer.parseInt(catalogo.getRow(i)[0]),
+				catalogo.getRow(i)[1],catalogo.getRow(i)[2],
+				Integer.parseInt(catalogo.getRow(i)[3]));
 		
 	}
 	
