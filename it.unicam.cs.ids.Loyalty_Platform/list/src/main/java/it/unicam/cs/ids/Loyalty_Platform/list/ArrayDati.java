@@ -37,7 +37,27 @@ public class ArrayDati {
 		}
 		return null;
 	}
+	
 	public int rowSize() {
 		return rows.size();
+	}
+	
+	@Override
+	public String toString() {//Da sistemare, forse meglio usare printf su ogni classe per gesitre meglio
+							// ma implica dover fare 2 to string diversi per label e righe
+		
+		String s="";
+		
+		for(int i=0;i<labels.size();i++) {
+			s+=labels.get(i)+"	 ";
+		}
+		s+="\n";
+		for(int i=0;i<rows.size();i++) {
+			for(int j=1;j<rows.get(i).length;j++) {
+				s+=rows.get(i)[j]+"		";
+			}
+		}
+		return s;
+		
 	}
 }

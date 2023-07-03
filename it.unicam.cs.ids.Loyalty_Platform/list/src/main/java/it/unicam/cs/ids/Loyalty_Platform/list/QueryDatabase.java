@@ -38,7 +38,7 @@ public class QueryDatabase {
 				pStmt.setString(i+1,arguments[i]);
 			}
 			resultSet = pStmt.executeQuery();
-			
+			resultSet.next();
 			dati=strutturaDati(resultSet);
 			conn.close();
 		}catch(SQLException e) {
@@ -76,21 +76,18 @@ public class QueryDatabase {
 	public ArrayDati strutturaDati(ResultSet rs) throws SQLException {
 		ArrayList<String> label= new ArrayList<String>();
 		ResultSetMetaData rsmd = rs.getMetaData();
-		int i=0;
-		for( ;i<rsmd.getColumnCount();i++) {
+		int i=1;
+		for( ;i<=rsmd.getColumnCount();i++) {
 			label.add(rsmd.getColumnName(i));
 		}
 		ArrayList<String[]> rows = new ArrayList<String[]>();
-		boolean b=true;
-		while(b) {
-			if(rs.next() == false) {
-				b=false;
-			}
+		while(rs.getRow()!=0) {
 			String[] s = new String[i];
-			for(int j=0;j<i;j++) {
+			for(int j=1;j<i;j++) {
 				s[j]=rs.getString(j);
 			}
 			rows.add(s);
+			rs.next();
 		}
 		
 		ArrayDati dati = new ArrayDati(label, rows);

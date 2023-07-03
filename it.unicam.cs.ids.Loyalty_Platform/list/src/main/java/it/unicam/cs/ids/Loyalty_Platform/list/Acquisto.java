@@ -2,10 +2,17 @@ package it.unicam.cs.ids.Loyalty_Platform.list;
 
 public class Acquisto {
 
+	private int id;
 	private String fattura;
 	private int totale;
 	private boolean convalidato;
 	
+	public Acquisto(int id, String f, int t, boolean c) {
+		this.id=id;
+		this.fattura=f;
+		this.totale=t;
+		this.convalidato=c;
+	}
 	
 	public String getFattura() {
 		return fattura;

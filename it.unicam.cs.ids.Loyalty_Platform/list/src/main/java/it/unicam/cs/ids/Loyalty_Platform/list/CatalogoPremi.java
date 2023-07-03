@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class CatalogoPremi {
 	
 	private ArrayDati catalogo=null;
-	
+	 
 	
 	public boolean getPremiDaDB() throws SQLException {
 		QueryDatabase db= new QueryDatabase();
@@ -20,9 +20,7 @@ public class CatalogoPremi {
 	
 	public void stampaCatalogo() {
 		
-		for(int i=0; i<catalogo.rowSize();i++) {
-		System.out.println(catalogo.getRow(i).toString());
-		}
+		System.out.println(catalogo.toString());
 		
 	}
 	

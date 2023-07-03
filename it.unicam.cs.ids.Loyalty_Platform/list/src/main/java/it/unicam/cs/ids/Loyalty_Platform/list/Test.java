@@ -16,7 +16,7 @@ public class Test {
 		
 		CatalogoPremi c= new CatalogoPremi();
 		
-		if(c.getPremiDaDB()) {
+		if(!c.getPremiDaDB()) {
 		System.out.println("catalogo premi vuoto");	
 			}else {
 		c.stampaCatalogo();
