@@ -22,7 +22,6 @@ public class Login {
 		while(b) {
 			System.out.print("Inserisci il tuo username: ");
 			user=sc.nextLine();
-			System.out.print("\n");
 			System.out.print("Inserisci la tua password: ");
 			pw=sc.nextLine();
 		
