@@ -24,6 +24,16 @@ public class ArrayDati {
 		}
 		return null;
 	}
+	
+	public String[] getAllLabels() {
+		String[] s=null;
+		s=new String[labels.size()];
+		for(int i=0;i<s.length;i++) {
+			s[i]=labels.get(i);
+		}
+		return s;
+	}
+ 	
 	public String[] getRow(int i) {
 		return rows.get(i);
 	}
@@ -42,22 +52,4 @@ public class ArrayDati {
 		return rows.size();
 	}
 	
-	@Override
-	public String toString() {//Da sistemare, forse meglio usare printf su ogni classe per gesitre meglio
-							// ma implica dover fare 2 to string diversi per label e righe
-		
-		String s="";
-		
-		for(int i=0;i<labels.size();i++) {
-			s+=labels.get(i)+"	 ";
-		}
-		s+="\n";
-		for(int i=0;i<rows.size();i++) {
-			for(int j=1;j<rows.get(i).length;j++) {
-				s+=rows.get(i)[j]+"		";
-			}
-		}
-		return s;
-		
-	}
 }

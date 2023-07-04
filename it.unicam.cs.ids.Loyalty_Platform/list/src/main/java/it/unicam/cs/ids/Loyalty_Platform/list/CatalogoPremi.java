@@ -18,9 +18,27 @@ public class CatalogoPremi {
 		return b;
 	}
 	
-	public void stampaCatalogo() {
+	public void stampaCatalogo() { 
 		
-		System.out.println(catalogo.toString());
+		String[] s=null;
+		
+		s=catalogo.getAllLabels();
+		for(int i=0;i<s.length;i++) {
+			if(i==s.length-2) {
+				i++;
+			}
+			System.out.printf("%-15s", s[i]);
+		}
+		System.out.print("\n");
+		for(int i=0;i<catalogo.rowSize();i++) {
+			s=catalogo.getRow(i);
+			for(int j=1;j<s.length;j++) {
+				if(j==s.length-2) {
+					j++;
+				}
+				System.out.printf("%-15s", s[j]);
+			}
+		}
 		
 	}
 	
