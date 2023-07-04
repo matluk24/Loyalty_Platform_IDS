@@ -10,7 +10,7 @@ public class CatalogoPremi {
 	
 	public boolean getPremiDaDB() throws SQLException {
 		QueryDatabase db= new QueryDatabase();
-		catalogo=db.query("SELECT * FROM premi", null);
+		catalogo=db.queryNoParam("SELECT * FROM premi");
 		boolean b=true;
 		if(catalogo==null) {
 			b= false;

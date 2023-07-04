@@ -48,6 +48,20 @@ public class QueryDatabase {
 		return dati;
 		
 	}
+	
+	
+	public ArrayDati queryOneParam(String query, String a) throws SQLException {
+		String[] s=new String[1];
+		s[0]=a;
+		return query(query, s);
+	}
+	
+	public ArrayDati queryNoParam(String query) throws SQLException {
+		return query(query, null);
+	}
+	
+	
+	
 	public ArrayDati insert(String insert, String[] attributes) throws SQLException {
 		ResultSet resultSet=null;
 		ArrayDati dati=null;
@@ -80,11 +94,12 @@ public class QueryDatabase {
 		for( ;i<=rsmd.getColumnCount();i++) {
 			label.add(rsmd.getColumnName(i));
 		}
+		i--;
 		ArrayList<String[]> rows = new ArrayList<String[]>();
 		while(rs.getRow()!=0) {
 			String[] s = new String[i];
-			for(int j=1;j<i;j++) {
-				s[j]=rs.getString(j);
+			for(int j=0;j<i;j++) {
+				s[j]=rs.getString(j+1);
 			}
 			rows.add(s);
 			rs.next();
