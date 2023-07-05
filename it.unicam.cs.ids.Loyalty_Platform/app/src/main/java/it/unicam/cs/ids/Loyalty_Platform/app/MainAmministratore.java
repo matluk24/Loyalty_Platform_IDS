@@ -25,6 +25,12 @@ public class MainAmministratore {
 		switch(Integer.parseInt(s)) {
 		
 		case 1:
+			if(ga.creaUtente()) {
+				System.out.println("Utente inserito con successo!");
+			}
+			else {
+				System.out.println("Errore nell'inserimento");
+			}
 			break;
 		case 2:
 			ga.stampaUtenti();

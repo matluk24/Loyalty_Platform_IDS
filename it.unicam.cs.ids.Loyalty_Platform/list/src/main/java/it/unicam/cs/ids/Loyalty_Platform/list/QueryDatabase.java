@@ -65,24 +65,21 @@ public class QueryDatabase {
 	
 	
 	
-	public ArrayDati insert(String insert, String[] attributes) throws SQLException {
-		ResultSet resultSet=null;
-		ArrayDati dati=null;
+	public boolean insert(String insert, String[] attributes) throws SQLException {
+		int j=0;
 		try {
 			conn();
 			PreparedStatement pStmt= conn.prepareStatement(insert, Statement.RETURN_GENERATED_KEYS);
 			for(int i = 0; i<attributes.length;i++ ) {
 				pStmt.setString(i+1,attributes[i]);
 			}
-			pStmt.execute();
-			resultSet = pStmt.getGeneratedKeys();
-			dati=strutturaDati(resultSet);
+			 j = pStmt.executeUpdate();
 			pStmt.close();
 			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
-		return dati;
+		return (j>0) ? true: false;
 	}
 	public boolean updateProgrammi(String sql, int id) throws SQLException {
 		conn();

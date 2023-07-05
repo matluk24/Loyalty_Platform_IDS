@@ -9,6 +9,7 @@ public class GestoreAmministratore {
 	ArrayDati a=null;
 	Utenti u=null;
 	Scanner sc=new Scanner(System.in);
+	String[] dati= null;
 	
 	public void stampaUtenti() {
 		
@@ -39,9 +40,43 @@ public class GestoreAmministratore {
 		
 	}
 	
-	public boolean modificaUtente(int i) throws SQLException {
+	
+	public boolean creaUtente() {
 		
-		String[] dati=null;
+		try {
+			a=db.queryNoParam("SELECT * FROM utenti");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		dati= new String[a.getAllLabels().length];
+		System.out.println("Inserisci i dati per la creazione dell'utente");
+		
+		System.out.println("Inserisci il nome utente: ");
+		dati[0]=sc.nextLine();
+		System.out.println("Inserisci il nome: ");
+		dati[1]=sc.nextLine();
+		System.out.println("Inserisci il cognome: ");
+		dati[2]=sc.nextLine();
+		System.out.println("Inserisci l'email: ");
+		dati[3]=sc.nextLine();
+		System.out.println("Inserisci la password: ");
+		dati[4]=sc.nextLine();
+		System.out.println("Inserisci il livello di permesso: ");
+		dati[5]=sc.nextLine();
+		
+		try {
+			return db.insert("INSERT INTO `utenti`(`NomeUtente`, `Nome`, `Cognome`, `email`, `Password`, `Livello`) VALUES ('?','?','?','?','?','?')", dati);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+		
+	}
+	
+	public boolean modificaUtente(int i) throws SQLException {
+	
 		boolean b=true;
 		int choice;
 		String s;
