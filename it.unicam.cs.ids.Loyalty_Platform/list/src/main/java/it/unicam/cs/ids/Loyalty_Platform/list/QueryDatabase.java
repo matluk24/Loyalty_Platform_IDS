@@ -3,6 +3,8 @@ package it.unicam.cs.ids.Loyalty_Platform.list;
 import java.sql.*;
 import java.util.*;
 
+import javax.crypto.spec.PSource.PSpecified;
+
 public class QueryDatabase {
 	
 	Connection conn=null;
@@ -40,6 +42,7 @@ public class QueryDatabase {
 			resultSet = pStmt.executeQuery();
 			resultSet.next();
 			dati=strutturaDati(resultSet);
+			pStmt.close();
 			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -74,14 +77,24 @@ public class QueryDatabase {
 			pStmt.execute();
 			resultSet = pStmt.getGeneratedKeys();
 			dati=strutturaDati(resultSet);
+			pStmt.close();
 			conn.close();
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return dati;
 	}
+	public Boolean updateProgrammi(String sql, int id) throws SQLException {
+		conn();
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+		pStmt.setInt(1, id);
+		int b=pStmt.executeUpdate();
+		pStmt.close();
+		conn.close();
+		return (b==1) ? true : false;
+	}
 	
-	public void close() throws SQLException {
+	public void close(String sql, String data) throws SQLException {
 		
 		conn.close();
 		

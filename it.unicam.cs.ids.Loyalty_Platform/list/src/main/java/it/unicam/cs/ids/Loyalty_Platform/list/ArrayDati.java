@@ -13,7 +13,7 @@ public class ArrayDati {
 		this.labels=labels;
 		this.rows=rows;
 	}
-	public String getLabel(int i){
+		public String getLabel(int i){
 		return labels.get(i);
 	}
 	public String getLabel(String s) {
