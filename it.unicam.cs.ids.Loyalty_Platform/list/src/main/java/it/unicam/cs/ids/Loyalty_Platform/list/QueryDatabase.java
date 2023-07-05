@@ -84,10 +84,20 @@ public class QueryDatabase {
 		}
 		return dati;
 	}
-	public Boolean updateProgrammi(String sql, int id) throws SQLException {
+	public boolean updateProgrammi(String sql, int id) throws SQLException {
 		conn();
 		PreparedStatement pStmt = conn.prepareStatement(sql);
 		pStmt.setInt(1, id);
+		int b=pStmt.executeUpdate();
+		pStmt.close();
+		conn.close();
+		return (b==1) ? true : false;
+	}
+	
+	public boolean update(String sql, String s) throws SQLException {
+		conn();
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+		pStmt.setString(1, s);
 		int b=pStmt.executeUpdate();
 		pStmt.close();
 		conn.close();

@@ -9,12 +9,13 @@ public class Utenti {
 	private String password;
 	private int livello;
 	
-	public Utenti(String n, String c,String e, String nu, String p, int l) {
+	public Utenti(String nu, String n,String c, String e, String p, int l) {
 		nome=n;
 		cognome=c;
 		email=e;
 		nomeutente=nu;
 		livello=l;
+		password=p;
 	}
 	
 	public String getNome() {
@@ -52,6 +53,13 @@ public class Utenti {
 	}
 	public void setLivello(int livello) {
 		this.livello = livello;
+	}
+	
+	@Override
+	public String toString() {
+		
+		return nomeutente+" "+nome+" "+cognome+" "+email+" "+password+" "+livello;
+		
 	}
 	
 }
