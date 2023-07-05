@@ -3,7 +3,7 @@ package it.unicam.cs.ids.Loyalty_Platform.list;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class GestoreTitolare {
+public class GestoreAmministratore {
 	
 	QueryDatabase db=new QueryDatabase();
 	ArrayDati a=null;

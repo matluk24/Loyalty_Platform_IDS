@@ -33,7 +33,7 @@ public class Login {
 				
 						case 0:
 							b=false;
-							MainTitolare.main(args);
+							MainConfigurazione.main(args);
 						break;
 				
 					}
