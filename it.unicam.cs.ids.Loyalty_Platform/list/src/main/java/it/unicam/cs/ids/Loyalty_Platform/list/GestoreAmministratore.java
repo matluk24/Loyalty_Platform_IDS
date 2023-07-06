@@ -102,8 +102,8 @@ public class GestoreAmministratore {
 			if(l==a.getLabel(choice-1)) {
 				System.out.println("Inserisci il nuovo valore: ");
 				s=sc.nextLine();
-				sql="UPDATE utenti SET "+l+"=? WHERE ?=?";
-				String[] values= {s,l,dati[choice-1]};
+				sql="UPDATE utenti SET ?=? WHERE ?=?";
+				String[] values= {l,s,l,dati[choice-1]};
 				b=db.update(sql, values);
 			}
 		}
