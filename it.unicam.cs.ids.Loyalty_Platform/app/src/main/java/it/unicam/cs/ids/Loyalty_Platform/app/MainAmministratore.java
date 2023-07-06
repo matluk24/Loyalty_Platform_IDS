@@ -15,9 +15,9 @@ public class MainAmministratore {
 		boolean b=true;
 		String s;
 		
-		System.out.println("Benevenuto nel menù del amministratore");
+		System.out.println("Benevenuto nel menï¿½ del amministratore");
 		while (b) {
-		System.out.println("Seleziona la funzionalità che vuoi eseguire:\n"
+		System.out.println("Seleziona la funzionalitï¿½ che vuoi eseguire:\n"
 				+ "-1 Crea utente\n"
 				+ "-2 Modifica utente");
 		
@@ -38,7 +38,7 @@ public class MainAmministratore {
 			try {
 				s=sc.nextLine();
 				if(ga.modificaUtente(Integer.parseInt(s))) {
-					System.out.println("La modifica dell'utente è andata a buon fine.");
+					System.out.println("La modifica dell'utente ï¿½ andata a buon fine.");
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

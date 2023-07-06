@@ -30,6 +30,8 @@ public class GestoreAmministratore {
 				for(int j=0;j<s.length;j++) {
 					System.out.printf("%-20s", s[j]);
 				}
+				System.out.printf("\n"
+						+ "");
 			}
 			
 		} catch (SQLException e) {
@@ -66,7 +68,7 @@ public class GestoreAmministratore {
 		dati[5]=sc.nextLine();
 		
 		try {
-			return db.insert("INSERT INTO `utenti`(`NomeUtente`, `Nome`, `Cognome`, `email`, `Password`, `Livello`) VALUES ('?','?','?','?','?','?')", dati);
+			return db.insert("INSERT INTO `utenti`(`NomeUtente`, `Nome`, `Cognome`, `email`, `Password`, `Livello`) VALUES (?,?,?,?,?,?)", dati);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
