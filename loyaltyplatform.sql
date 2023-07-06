@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< Upstream, based on branch 'main' of https://github.com/matluk24/Loyalty_Platform_IDS.git
 -- Creato il: Lug 06, 2023 alle 17:21
+=======
+-- Creato il: Lug 06, 2023 alle 15:00
+>>>>>>> 1da0bb0 agguirnamento DBMS
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -156,8 +160,12 @@ CREATE TABLE `premi` (
 CREATE TABLE `programmalivelli` (
   `Id_cliente` int(11) NOT NULL,
   `Livello` int(11) NOT NULL,
+<<<<<<< Upstream, based on branch 'main' of https://github.com/matluk24/Loyalty_Platform_IDS.git
   `Esperienza` int(11) NOT NULL,
   `N_visite` int(11) NOT NULL
+=======
+  `esperienza` int(11) NOT NULL
+>>>>>>> 1da0bb0 agguirnamento DBMS
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -177,6 +185,20 @@ CREATE TABLE `programmapunti` (
 
 INSERT INTO `programmapunti` (`Id_cliente`, `Punti`) VALUES
 (1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `programmi`
+--
+
+CREATE TABLE `programmi` (
+  `Id_programma` int(11) NOT NULL,
+  `Descrizione` int(100) NOT NULL,
+  `Status` bit(1) NOT NULL DEFAULT b'0',
+  `Nome` varchar(30) NOT NULL,
+  `Tools` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -285,6 +307,7 @@ ALTER TABLE `utenti`
 --
 
 --
+<<<<<<< Upstream, based on branch 'main' of https://github.com/matluk24/Loyalty_Platform_IDS.git
 -- AUTO_INCREMENT per la tabella `acquisti`
 --
 ALTER TABLE `acquisti`
@@ -313,6 +336,12 @@ ALTER TABLE `livelliprogramma`
 --
 ALTER TABLE `premi`
   MODIFY `Id_premi` mediumint(9) NOT NULL AUTO_INCREMENT;
+=======
+-- AUTO_INCREMENT per la tabella `clienti`
+--
+ALTER TABLE `clienti`
+  MODIFY `Id_cliente` mediumint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+>>>>>>> 1da0bb0 agguirnamento DBMS
 
 --
 -- AUTO_INCREMENT per la tabella `programmi`
