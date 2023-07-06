@@ -35,6 +35,9 @@ public class ArrayDati {
 	}
  	
 	public String[] getRow(int i) {
+		if(rows.isEmpty()) {
+			return null;
+		}
 		return rows.get(i);
 	}
 	public String[] getRow(String s) {
