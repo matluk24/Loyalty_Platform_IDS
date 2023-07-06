@@ -3,7 +3,7 @@ package it.unicam.cs.ids.Loyalty_Platform.app;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-import it.unicam.cs.ids.Loyalty_Platform.list.GestoreAmministratore;
+import it.unicam.cs.ids.Loyalty_Platform.list.GestoreUtenti;
 
 public class MainAmministratore {
 
@@ -11,7 +11,7 @@ public class MainAmministratore {
 		// TODO Auto-generated method stub
 		
 		Scanner sc = new Scanner(System.in);
-		GestoreAmministratore ga= new GestoreAmministratore();
+		GestoreUtenti ga= new GestoreUtenti();
 		boolean b=true;
 		String s;
 		

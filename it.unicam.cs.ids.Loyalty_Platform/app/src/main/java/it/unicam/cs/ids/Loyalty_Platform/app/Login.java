@@ -35,6 +35,19 @@ public class Login {
 							b=false;
 							MainAmministratore.main(args);
 						break;
+						
+						case 1:
+							b=false;
+							MainConfigurazione.main(args);
+						break;
+						
+						case 2:
+							break;
+							
+						case 3:
+							b=false;
+							MainCassiere.main(args);
+							break;
 				
 					}
 				}

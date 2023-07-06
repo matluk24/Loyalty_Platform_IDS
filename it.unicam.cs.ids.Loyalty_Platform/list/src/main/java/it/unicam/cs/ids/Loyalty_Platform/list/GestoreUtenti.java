@@ -3,7 +3,7 @@ package it.unicam.cs.ids.Loyalty_Platform.list;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-public class GestoreAmministratore {
+public class GestoreUtenti {
 	
 	QueryDatabase db=new QueryDatabase();
 	ArrayDati a=null;
@@ -98,15 +98,12 @@ public class GestoreAmministratore {
 		
 		choice=Integer.parseInt(sc.nextLine());	
 		
-		for(String l:a.getAllLabels()) {
-			if(l==a.getLabel(choice-1)) {
+		String l=a.getLabel(choice-1);
 				System.out.println("Inserisci il nuovo valore: ");
 				s=sc.nextLine();
-				sql="UPDATE utenti SET ?=? WHERE ?=?";
-				String[] values= {l,s,l,dati[choice-1]};
+				sql="UPDATE utenti SET "+l+"=? WHERE "+l+"=?";
+				String[] values= {s,dati[choice-1]};
 				b=db.update(sql, values);
-			}
-		}
 		return b;
 		
 		
