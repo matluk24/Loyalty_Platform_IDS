@@ -18,7 +18,7 @@ public class Programmi {
 				QueryDatabase db = new QueryDatabase();
 				String sql="UPDATE programmi SET "+label+"="+data+" WHERE id_programma=?";
 				this.programmi = new Programmi().getProgrammi();
-				return db.updateProgrammi(sql, i);
+				return db.update(sql, Integer.toString(i));
 			}
 		}
 		return false;
