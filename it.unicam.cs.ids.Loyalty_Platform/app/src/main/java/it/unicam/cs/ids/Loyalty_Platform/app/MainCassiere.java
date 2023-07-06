@@ -18,7 +18,7 @@ public class MainCassiere {
 		
 		System.out.println("Benvenuto nel menu del cassiere: ");
 		System.out.println("Scegli l'operazione da eseguire: ");
-		System.out.println("-1 Crea TesseraPunti\n"
+		System.out.println("-1 Crea Tessera \n"
 				+ "-2 Identifica cliente");
 		
 		switch (Integer.parseInt(sc.nextLine())) {
