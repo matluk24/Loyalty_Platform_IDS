@@ -99,11 +99,12 @@ public class GestoreAmministratore {
 		choice=Integer.parseInt(sc.nextLine());	
 		
 		for(String l:a.getAllLabels()) {
-			if(l==a.getAllLabels()[choice-1]) {
+			if(l==a.getLabel(choice-1)) {
 				System.out.println("Inserisci il nuovo valore: ");
 				s=sc.nextLine();
-				sql="UPDATE utenti SET "+l+"=?";
-				b=db.update(sql, s);
+				sql="UPDATE utenti SET "+l+"=? WHERE ?=?";
+				String[] values= {s,l,dati[choice-1]};
+				b=db.update(sql, values);
 			}
 		}
 		return b;

@@ -93,6 +93,19 @@ public class QueryDatabase {
 		conn.close();
 		return (b==1) ? true : false;
 	}
+	public Boolean update(String sql, String[] values) throws SQLException {
+		conn();
+		PreparedStatement pStmt = conn.prepareStatement(sql);
+		int i =1;
+		for(String value : values) {
+			pStmt.setString(i, value);
+			i++;
+		}
+		int b=pStmt.executeUpdate();
+		pStmt.close();
+		conn.close();
+		return (b==1) ? true : false;
+	}
 	
 	public void close(String sql, String data) throws SQLException {
 		
