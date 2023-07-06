@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Giu 30, 2023 alle 11:37
+-- Creato il: Lug 06, 2023 alle 17:21
 -- Versione del server: 10.4.28-MariaDB
 -- Versione PHP: 8.2.4
 
@@ -49,6 +49,13 @@ CREATE TABLE `clienti` (
   `Tessera` bit(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dump dei dati per la tabella `clienti`
+--
+
+INSERT INTO `clienti` (`Id_cliente`, `Nome`, `Cognome`, `email`, `nTelefono`, `Tessera`) VALUES
+(1, 'mario', 'rossi', 'mario.rossi@g.com', '2975689008', b'1');
+
 -- --------------------------------------------------------
 
 --
@@ -89,6 +96,13 @@ CREATE TABLE `formulario` (
   `Documento` varchar(20) NOT NULL,
   `CodiceDocumento` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `formulario`
+--
+
+INSERT INTO `formulario` (`Id_cliente`, `CF`, `DataDiNascita`, `LuogoDiNascita`, `Residenza`, `Documento`, `CodiceDocumento`) VALUES
+(1, 'dgsdgdsgsdg', '1999-01-01', 'vsvdsvsd', 'gsdgsd', 'sdgdsg', '03458');
 
 -- --------------------------------------------------------
 
@@ -141,7 +155,9 @@ CREATE TABLE `premi` (
 
 CREATE TABLE `programmalivelli` (
   `Id_cliente` int(11) NOT NULL,
-  `Livello` int(11) NOT NULL
+  `Livello` int(11) NOT NULL,
+  `Esperienza` int(11) NOT NULL,
+  `N_visite` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -153,6 +169,27 @@ CREATE TABLE `programmalivelli` (
 CREATE TABLE `programmapunti` (
   `Id_cliente` int(11) NOT NULL,
   `Punti` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `programmapunti`
+--
+
+INSERT INTO `programmapunti` (`Id_cliente`, `Punti`) VALUES
+(1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struttura della tabella `programmi`
+--
+
+CREATE TABLE `programmi` (
+  `Id_programma` int(11) NOT NULL,
+  `Descrizione` int(100) NOT NULL,
+  `Status` bit(1) NOT NULL DEFAULT b'0',
+  `Nome` varchar(30) NOT NULL,
+  `Tools` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -169,6 +206,15 @@ CREATE TABLE `utenti` (
   `Password` varchar(24) NOT NULL,
   `Livello` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `utenti`
+--
+
+INSERT INTO `utenti` (`NomeUtente`, `Nome`, `Cognome`, `email`, `Password`, `Livello`) VALUES
+('fb', 'francesco', 'barontini', 'f.b@g.com', '123456', 1),
+('mariorossi', 'mario', 'rossi', 'mariorossi@g.com', 'mariorossi1', 0),
+('ml', 'mattia', 'luciani', 'm.l@g.com', '123456', 1);
 
 --
 -- Indici per le tabelle scaricate
@@ -205,6 +251,12 @@ ALTER TABLE `livelliprogramma`
   ADD PRIMARY KEY (`Id_livello`);
 
 --
+-- Indici per le tabelle `premi`
+--
+ALTER TABLE `premi`
+  ADD PRIMARY KEY (`Id_premi`);
+
+--
 -- Indici per le tabelle `programmalivelli`
 --
 ALTER TABLE `programmalivelli`
@@ -217,10 +269,56 @@ ALTER TABLE `programmapunti`
   ADD PRIMARY KEY (`Id_cliente`);
 
 --
+-- Indici per le tabelle `programmi`
+--
+ALTER TABLE `programmi`
+  ADD PRIMARY KEY (`Id_programma`);
+
+--
 -- Indici per le tabelle `utenti`
 --
 ALTER TABLE `utenti`
   ADD PRIMARY KEY (`NomeUtente`);
+
+--
+-- AUTO_INCREMENT per le tabelle scaricate
+--
+
+--
+-- AUTO_INCREMENT per la tabella `acquisti`
+--
+ALTER TABLE `acquisti`
+  MODIFY `N_Fattura` smallint(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `clienti`
+--
+ALTER TABLE `clienti`
+  MODIFY `Id_cliente` mediumint(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT per la tabella `coupon`
+--
+ALTER TABLE `coupon`
+  MODIFY `Id_coupon` mediumint(9) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `livelliprogramma`
+--
+ALTER TABLE `livelliprogramma`
+  MODIFY `Id_livello` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `premi`
+--
+ALTER TABLE `premi`
+  MODIFY `Id_premi` mediumint(9) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT per la tabella `programmi`
+--
+ALTER TABLE `programmi`
+  MODIFY `Id_programma` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
