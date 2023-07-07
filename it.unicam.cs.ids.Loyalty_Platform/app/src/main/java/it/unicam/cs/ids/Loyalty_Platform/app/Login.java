@@ -28,7 +28,7 @@ public class Login {
 			try {
 				a=db.queryOneParam("Select Password FROM utenti WHERE NomeUtente=?", user);
 				if(a.getRow(0)[0].equals(pw)) {
-					a=db.queryOneParam("Select Livello FROM utenti WHERE NomeUtente=?", user);
+					a=db.queryOneParam("Select Livello,Id_cliente FROM utenti WHERE NomeUtente=?", user);
 					switch (Integer.parseInt(a.getRow(0)[0])) {
 				
 						case 0:
@@ -47,6 +47,11 @@ public class Login {
 						case 3:
 							b=false;
 							MainCassiere.main(args);
+							break;
+							
+						case 4:
+							b=false;
+							MainCliente.main(a.getRow(0));
 							break;
 				
 					}

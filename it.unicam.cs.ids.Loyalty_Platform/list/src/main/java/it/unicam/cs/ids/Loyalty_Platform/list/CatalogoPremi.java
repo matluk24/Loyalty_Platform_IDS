@@ -114,4 +114,18 @@ public class CatalogoPremi {
 		}
 	}
 	
+	public void ritiraPremio(String id, String idP) {
+		
+		String[] dati= {id, idP};
+		
+		try {
+			db.insert("INSERT INTO clienti_premi(Id_cliente, Id_premio) VALUES (?,?)", dati);
+			System.out.println("Il premio è stato correttamente legato al cliente");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }

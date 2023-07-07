@@ -42,7 +42,7 @@ public class GestoreTessera {
 		
 		try {
 			int i=0;
-			a=db.queryOneParam("SELECT Id_cliente FROM clienti WHERE Nome=? AND TesseraPunti=0", n);
+			a=db.queryOneParam("SELECT Id_cliente FROM clienti WHERE Nome=? AND Tessera=0", n);
 			if(a.getRow(i)==null) {
 				System.out.println("L'utente scelto ha già una tessera");
 				return;
@@ -63,25 +63,35 @@ public class GestoreTessera {
 			}
 			
 			if(db.insert("INSERT INTO formulario(Id_cliente,CF,DataDiNascita,LuogoDiNascita,Residenza,Documento,CodiceDocumento) VALUES (?,?,?,?,?,?,?)", dati)) {
-				dati=new String[2];
-				dati[0]=id;
-				dati[1]="0";
+				dati=new String[7];
 				System.out.println("Formulario compilato con successo!");
 				System.out.println("Scegli il programma fedelta a cui aderire: \n"
 						+ "-1 Programma a livelli\n"
 						+ "-2 Programma a punti");
 				db.update("UPDATE clienti SET tessera=1 WHERE Id_cliente=?", id);
+				a=db.queryOneParam("SELECT * FROM clienti WHERE Id_cliente=?", id);
+				for(int j=1;j<a.getRow(0).length;j++) {
+					dati[j]=a.getRow(0)[j];
+				}
+				dati[0]=a.getRow(0)[1].concat(a.getRow(0)[2]);
+				dati[4]="0000";
+				dati[5]="4";
+				dati[6]=id;
+				db.insert("INSERT INTO utenti(NomeUtente,Nome,Cognome,Email,Password,Livello,Id_cliente) VALUES (?,?,?,?,?,?,?)", dati);
+				String[] datiT=new String[1];
+				datiT[0]=id;
 				switch (Integer.parseInt(sc.nextLine())) {
 				
 				case 1:
-					db.insert("INSERT INTO programmalivelli(Id_cliente,Livello,Esperienza,N_visite) VALUES (?,?,0,0)", dati);
+					db.insert("INSERT INTO programmalivelli(Id_cliente,Livello,Esperienza,N_visite) VALUES (?,0,0,0)", datiT);
 					break;
 				
 				case 2:
-					db.insert("INSERT INTO programmapunti(Id_cliente,Punti) VALUES (?,?)", dati);
+					db.insert("INSERT INTO programmapunti(Id_cliente,Punti) VALUES (?,0)", datiT);
 					break;
 				}
-				System.out.println("TesseraPunti creata con successo!");
+				System.out.println("Tessera creata con successo!");
+				System.out.println("Le credenziali di accesso del cliente sono: Nome utente: "+dati[0]+" Password: "+dati[4]);
 			}
 			else {
 				System.out.println("Problemi nel compilamento del formulario");
