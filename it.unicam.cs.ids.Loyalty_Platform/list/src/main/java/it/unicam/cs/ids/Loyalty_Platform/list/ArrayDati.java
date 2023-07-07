@@ -50,6 +50,9 @@ public class ArrayDati {
 		}
 		return null;
 	}
+	public ArrayList<String[]> getRows(){
+		return this.rows;
+	}
 	
 	public int rowSize() {
 		return rows.size();
